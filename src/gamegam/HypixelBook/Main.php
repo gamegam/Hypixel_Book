@@ -55,7 +55,7 @@ class Main extends PluginBase implements Listener{
 			if ($sec > 0.1){
                 $this->getAPI($p)->open($item);
                 $p->getInventory()->setItemInHand($this->hand);
-                unset($this->db["open"][$name], $this->db["Item"][$name]);
+                unset($this->db["open"][$name], $this->db["Item"][$name], $this->db[$p->getName()]);
                 $this->db["기본"][$name] = true;
             }
         }
