@@ -18,9 +18,7 @@ class Time extends Task{
         $api = Server::getInstance()->getPluginManager()->getPlugin("HypixelBook");
         $name = $this->p->getName();
         if ($this->p instanceof Player && $this->p->isOnline()){
-            if (isset($this->db["기본"][$name])){
-                $api->Book($this->p);
-            }
+            $api->Book($this->p);
             if (isset($api->db[$this->p->getName()])){
                 $this->p->getInventory()->setHeldItemIndex($api->config->get("slot"));
             }
