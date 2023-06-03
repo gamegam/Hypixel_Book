@@ -1,0 +1,20 @@
+---
+#author the name of the book
+#You can check that my own nickname is called with {name}!
+
+
+author: Server
+
+Title: Server Help
+
+#Since page is an array - paste something like this Example:
+#-test
+#-HI
+#test is page 1
+#Hi is page 2
+page:
+  - "Hello {name}"
+  - "Test"
+#The slot moves to the 8th slot and opens the book when you log in.
+slot: 8
+...
