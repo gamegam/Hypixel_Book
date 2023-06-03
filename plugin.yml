@@ -1,0 +1,5 @@
+name: HypixelBook
+author: gamegam
+main: gamegam\HypixelBook\Main
+version: 0.1
+api: 5.0.0
