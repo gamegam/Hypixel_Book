@@ -51,12 +51,12 @@ class Main extends PluginBase implements Listener{
         $item = VanillaItems::WRITTEN_BOOK();
         if (isset($this->db["open"][$name])){
             $time = microtime(true) - $this->db["open"][$name];
-			$sec = round($time, 2);
-			if ($sec > 0.1){
+		$sec = round($time, 2);
+		if ($sec > 0.1){
                 $this->getAPI($p)->open($item);
                 $p->getInventory()->setItemInHand($this->hand);
                 unset($this->db["open"][$name], $this->db["Item"][$name], $this->db[$p->getName()]);
-                $this->db["기본"][$name] = true;
+                $this->db["default"][$name] = true;
             }
         }
     }
@@ -65,7 +65,7 @@ class Main extends PluginBase implements Listener{
         $item = VanillaItems::WRITTEN_BOOK();
         $name = $p->getName();
         $this->db["open"][$name] = microtime(true);
-		$p->getInventory()->setHeldItemIndex($this->config->get("slot"));
+	$p->getInventory()->setHeldItemIndex($this->config->get("slot"));
         $name = str_replace('{name}', $p->getName(), $this->config->get("author"));
         $item->setTitle($this->config->get("Title"));
         $page = $this->getConfig()->get("page");
@@ -74,7 +74,7 @@ class Main extends PluginBase implements Listener{
             $pageS = str_replace('{name}', $p->getName(), $page);
             $item->setPageText($int, $pageS);
         }
-		$p->getInventory()->setItem($this->config->get("slot"), $item);
+	$p->getInventory()->setItem($this->config->get("slot"), $item);
         $this->Book($p);
     }
 
@@ -83,9 +83,9 @@ class Main extends PluginBase implements Listener{
         $name = $p->getName();
         $this->hand = $p->getInventory()->getItemInHand();
         $item = VanillaItems::WRITTEN_BOOK();
-        unset($this->db["open"][$name], $this->db["기본"][$name]);
-		$p->getInventory()->setItem(8, $item);	
-		$this->db[$name] = true;
+        unset($this->db["open"][$name], $this->db["default"][$name]);
+	$p->getInventory()->setItem(8, $item);	
+	$this->db[$name] = true;
         $this->getScheduler()->scheduleRepeatingTask(new Time($p), 0);
         $this->open($p);
     }
