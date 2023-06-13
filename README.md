@@ -1,7 +1,7 @@
 # Hypixel_Book
 When you join the server, you will receive a book virtually.
 
-You can display a description window when you join the server.
+When you join the server, you can receive a book and display a description window.
 
 Is there a reason to use the Hypixel_Book plugin?:
 
