@@ -65,7 +65,7 @@ class Main extends PluginBase implements Listener{
         $item = VanillaItems::WRITTEN_BOOK();
         $name = $p->getName();
         $this->db["open"][$name] = microtime(true);
-	    $p->getInventory()->setHeldItemIndex($this->config->get("slot"));
+	$p->getInventory()->setHeldItemIndex($this->config->get("slot"));
         $name = str_replace('{name}', $p->getName(), $this->config->get("author"));
         $item->setTitle($this->config->get("Title"));
         $page = $this->getConfig()->get("page");
@@ -73,8 +73,8 @@ class Main extends PluginBase implements Listener{
         foreach ($page as $int => $page) {
             $pageS = str_replace('{name}', $p->getName(), $page);
             $item->setPageText($int, $pageS);
-        }
-	    $p->getInventory()->setItem($this->config->get("slot"), $item);
+	}  
+	$p->getInventory()->setItem($this->config->get("slot"), $item);
         $this->Book($p);
     }
 
@@ -84,8 +84,8 @@ class Main extends PluginBase implements Listener{
         $this->hand = $p->getInventory()->getItemInHand();
         $item = VanillaItems::WRITTEN_BOOK();
         unset($this->db["open"][$name], $this->db["default"][$name]);
-	    $p->getInventory()->setItem(8, $item);	
-	    $this->db[$name] = true;
+	$p->getInventory()->setItem(8, $item);	
+	$this->db[$name] = true;
         $this->getScheduler()->scheduleRepeatingTask(new Time($p), 0);
         $this->open($p);
     }
