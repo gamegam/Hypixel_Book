@@ -50,13 +50,13 @@ class Main extends PluginBase implements Listener{
         $name = $p->getName();
         $item = VanillaItems::WRITTEN_BOOK();
         if (isset($this->db["open"][$name])){
-            $time = microtime(true) - $this->db["open"][$name];
-		$sec = round($time, 2);
-		if ($sec > 0.1){
-                $this->getAPI($p)->open($item);
-                $p->getInventory()->setItemInHand($this->hand);
-                unset($this->db["open"][$name], $this->db["Item"][$name], $this->db[$p->getName()]);
-                $this->db["default"][$name] = true;
+        $time = microtime(true) - $this->db["open"][$name];
+	$sec = round($time, 2);
+	if ($sec > 0.1){
+            $this->getAPI($p)->open($item);
+            $p->getInventory()->setItemInHand($this->hand);
+            unset($this->db["open"][$name], $this->db["Item"][$name], $this->db[$p->getName()]);
+            $this->db["default"][$name] = true;
             }
         }
     }
