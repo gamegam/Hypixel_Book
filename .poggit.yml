@@ -4,6 +4,6 @@ branches:
 - main
 projects:
   Hypixel_Book:
-    path: "Hypixel_Book/Hypixel.png"
+    path: "Hypixel.png"
     icon: "Hypixel.png"
 ...
