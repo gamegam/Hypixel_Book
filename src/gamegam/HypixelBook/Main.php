@@ -50,7 +50,7 @@ class Main extends PluginBase implements Listener{
         $name = $p->getName();
         $item = VanillaItems::WRITTEN_BOOK();
         if (isset($this->db["open"][$name])){
-            $time = microtime(true) - $this->db["open"][$name];
+        $time = microtime(true) - $this->db["open"][$name];
 		$sec = round($time, 2);
 		if ($sec > 0.1){
             $this->getAPI($p)->open($item);
@@ -74,7 +74,7 @@ class Main extends PluginBase implements Listener{
             $pageS = str_replace('{name}', $p->getName(), $page);
             $item->setPageText($int, $pageS);
         }
-	$p->getInventory()->setItem($this->config->get("slot"), $item);
+        $p->getInventory()->setItem($this->config->get("slot"), $item);
         $this->Book($p);
     }
 
@@ -86,7 +86,7 @@ class Main extends PluginBase implements Listener{
     unset($this->db["open"][$name], $this->db["default"][$name]);
 	$p->getInventory()->setItem(8, $item);	
 	$this->db[$name] = true;
-        $this->getScheduler()->scheduleRepeatingTask(new Time($p), 0);
-        $this->open($p);
+    $this->getScheduler()->scheduleRepeatingTask(new Time($p), 0);
+    $this->open($p);
     }
 }
