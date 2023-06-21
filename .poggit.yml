@@ -5,5 +5,7 @@ branches:
 projects:
   Hypixel_Book:
     path: ""
-    icon: "/Hypixel.png"
+    icon: "Hypixel.png"
+    lint:
+      phpstan: false
 ...
