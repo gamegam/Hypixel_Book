@@ -10,3 +10,7 @@ Yes, there is.
 When you log in, you can do an explanation
 
 From the user's point of view, it's comfortable and looks good.
+
+Update patch:
+Slots can now be as few as 0 to 8.
+July 16
