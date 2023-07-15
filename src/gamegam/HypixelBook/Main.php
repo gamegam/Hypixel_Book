@@ -29,7 +29,12 @@ class Main extends PluginBase implements Listener{
         $this->saveResource("config.yml");
         $this->config = (new Config($this->getDataFolder() . "config.yml", Config::YAML));
         $this->data = new Config($this->getDataFolder(). "Data.yml",Config::YAML);
-        $this->db = $this->data->getAll();
+        $this->db = $this->data->getAll();    
+	$solt = $this->config->get("slot");
+	if ($solt < 0 or $solt > 8){
+	      $this->config->set("slot", 8);
+	      $this->config->save();
+	}
     }
 
     public function onLoad(): void{
@@ -84,7 +89,7 @@ class Main extends PluginBase implements Listener{
         $this->hand = $p->getInventory()->getItemInHand();
         $item = VanillaItems::WRITTEN_BOOK();
         unset($this->db["open"][$name], $this->db["default"][$name]);
-	$p->getInventory()->setItem(8, $item);	
+	$p->getInventory()->setItem(8, $item);
 	$this->db[$name] = true;
         $this->getScheduler()->scheduleRepeatingTask(new Time($p), 0);
         $this->open($p);
