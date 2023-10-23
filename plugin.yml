@@ -3,3 +3,12 @@ author: gamegam
 main: gamegam\HypixelBook\Main
 version: 0.1
 api: 5.0.0
+
+permissions:
+  HypixelBook.Book:
+    default: true
+    description: Open the book automatically.
+
+  HypixelBook.set:
+    default: op
+    description: setBook Edit
