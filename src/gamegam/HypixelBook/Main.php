@@ -37,7 +37,7 @@ class Main extends PluginBase implements Listener{
 	if ($cmd == true){
 		$cmdarray[] = new BookCommand($this);
 	}
-	$this->getServer()->getCommandMap()->registerAll("Main", $cmdarray);
+	$this->getServer()->getCommandMap()->registerAll("HypixelBook", $cmdarray);
    }
 
    public function onLoad(): void{
