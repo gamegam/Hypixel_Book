@@ -8,7 +8,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
 
 class BookAdmin extends Command{
-
+	
 	public $api;
 
 	public function __construct($api)
