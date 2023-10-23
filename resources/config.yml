@@ -7,6 +7,11 @@ author: Server
 
 Title: Server Help
 
+
+#Command allows the player to enable or disable /rule commands.
+# true is activation false deactivation.
+Command: true
+
 #Since page is an array - paste something like this Example:
 #-test
 #-HI
@@ -14,7 +19,5 @@ Title: Server Help
 #Hi is page 2
 page:
   - "Hello {name}"
-  - "Test"
-#The slot moves to the 8th slot and opens the book when you log in.
-slot: 8
+  - "Test {name}"
 ...
