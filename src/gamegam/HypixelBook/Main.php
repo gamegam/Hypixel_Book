@@ -24,23 +24,23 @@ class Main extends PluginBase implements Listener{
 
     public $hand;
 
-	public function onEnable():void{
-		$this->getServer()->getPluginManager()->registerEvents($this, $this);
-		$this->saveResource("config.yml");
-		$this->config = (new Config($this->getDataFolder() . "config.yml", Config::YAML));
-		$this->data = (new Config($this->getDataFolder()."Data.yml", Config::YAML));
-		$this->db = $this->data->getAll();
-		$cmd = $this->config->get("Command") ?? "";
-		$cmdarray = [
-			new BookAdmin($this)
-		];
-		if ($cmd == true){
-			$cmdarray[] = new BookCommand($this);
-		}
-		$this->getServer()->getCommandMap()->registerAll("Main", $cmdarray);
+    public function onEnable():void{
+	$this->getServer()->getPluginManager()->registerEvents($this, $this);
+	$this->saveResource("config.yml");
+	$this->config = (new Config($this->getDataFolder() . "config.yml", Config::YAML));
+	$this->data = (new Config($this->getDataFolder()."Data.yml", Config::YAML));
+	$this->db = $this->data->getAll();
+	$cmd = $this->config->get("Command") ?? "";
+	$cmdarray = [
+		new BookAdmin($this)
+	];
+	if ($cmd == true){
+		$cmdarray[] = new BookCommand($this);
 	}
+	$this->getServer()->getCommandMap()->registerAll("Main", $cmdarray);
+   }
 
-    public function onLoad(): void{
+   public function onLoad(): void{
         if (self::$instance == null)
         self::$instance = $this;
     }
@@ -48,9 +48,8 @@ class Main extends PluginBase implements Listener{
     public static function getInstance(){
         return static::$instance;
     }
-
     public function getAPI(Player $p):API{
-        $new = new API($p);
+	$new = new API($p);
         return $new;
     }
 
@@ -68,37 +67,35 @@ class Main extends PluginBase implements Listener{
             }
         }
     }
-
-	public function open(Player $p){
-		$item = VanillaItems::WRITTEN_BOOK();
-		$name = $p->getName();
-		$this->db["open"][$name] = microtime(true);
-		$name = str_replace('{name}', $p->getName(), $this->config->get("author"));
-		$item->setTitle($this->config->get("Title"));
-		$page = $this->getConfig()->get("page");
-		$item->setAuthor($name);
-		foreach ($page as $int => $page) {
-			$pageS = str_replace('{name}', $p->getName(), $page);
-			$item->setPageText($int, $pageS);
-		}
-		$p->getInventory()->setItem($p->getInventory()->getHeldItemIndex(), $item);
-		$this->Book($p);
+    public function open(Player $p){
+	$item = VanillaItems::WRITTEN_BOOK();
+	$name = $p->getName();
+	$this->db["open"][$name] = microtime(true);
+	$name = str_replace('{name}', $p->getName(), $this->config->get("author"));
+	$item->setTitle($this->config->get("Title"));
+	$page = $this->getConfig()->get("page");
+	$item->setAuthor($name);
+	foreach ($page as $int => $page) {
+		$pageS = str_replace('{name}', $p->getName(), $page);
+		$item->setPageText($int, $pageS);
+	}
+	$p->getInventory()->setItem($p->getInventory()->getHeldItemIndex(), $item);
+	$this->Book($p);
 	}
 
 	public function Event(Player $p){
-		$name = $p->getName();
-		$this->hand = $p->getInventory()->getItemInHand();
-		$item = VanillaItems::WRITTEN_BOOK();
-		unset($this->db["open"][$name], $this->db["default"][$name]);
-		$p->getInventory()->setItem($p->getInventory()->getHeldItemIndex(), $item);
-		$this->db[$name] = true;
-		$this->getScheduler()->scheduleRepeatingTask(new Time($p, $this), 0);
-		$this->open($p);
+	    $name = $p->getName();
+	    $this->hand = $p->getInventory()->getItemInHand();
+	    $item = VanillaItems::WRITTEN_BOOK();
+	    unset($this->db["open"][$name], $this->db["default"][$name]);
+	    $p->getInventory()->setItem($p->getInventory()->getHeldItemIndex(), $item);
+	    $this->db[$name] = true;
+	    $this->getScheduler()->scheduleRepeatingTask(new Time($p, $this), 0);
+	    $this->open($p);
 	}
-
-    public function Join(PlayerJoinEvent $ev)
+	public function Join(PlayerJoinEvent $ev)
 	{
-		$p = $ev->getPlayer();
-		$this->Event($p);
-	}
+	    $p = $ev->getPlayer();
+	    $this->Event($p);
+     }
 }
