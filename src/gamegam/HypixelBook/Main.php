@@ -76,7 +76,8 @@ class Main extends PluginBase implements Listener{
 	$page = $this->getConfig()->get("page");
 	$item->setAuthor($name);
 	foreach ($page as $int => $page) {
-		$pageS = str_replace('{name}', $p->getName(), $page);
+		$pa = str_replace('{name}', $p->getName(), $page);
+		$pageS = str_replace('\n', "\n", $pa);
 		$item->setPageText($int, $pageS);
 	}
 	$p->getInventory()->setItem($p->getInventory()->getHeldItemIndex(), $item);
